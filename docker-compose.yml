@@ -1,0 +1,137 @@
+#version: '3.8'
+#services:
+#  backend:
+#    build:
+#      context: .
+#      dockerfile: Dockerfile
+#    ports:
+#      - 8000:8000
+#    volumes:
+#      - .:/app
+#    depends_on:
+#      - db
+#    command: >
+#      sh -c "while ! nc -z db 3306; do
+#             echo 'Waiting for the database...';
+#             sleep 1;
+#             done;
+#             python manage.py runserver 0.0.0.0:8000"
+#  db:
+#    image: mysql:5.7.22
+#    restart: always
+#    environment:
+#      MYSQL_DATABASE: admin
+#      MYSQL_USER: root
+#      MYSQL_PASSWORD: root
+#      MYSQL_ROOT_PASSWORD: root
+#    volumes:
+#      - .dbdata:/var/lib/mysql
+#    ports:
+#      - 33066:3306
+
+# mysql-cliente
+#version: '3.8'
+#
+#services:
+#  backend:
+#    build:
+#      context: .
+#      dockerfile: Dockerfile
+#    ports:
+#      - "8000:8000"
+#    volumes:
+#      - .:/app
+#    depends_on:
+#      - db
+#    command: >
+#      sh -c "until mysql -h db -uroot -proot -e 'SHOW DATABASES;'; do
+#            echo 'Waiting for the database...';
+#            sleep 1;
+#            done;
+#            python manage.py runserver 0.0.0.0:8000"
+#
+#  db:
+#    image: mysql:5.7.22
+#    restart: always
+#    environment:
+#      MYSQL_DATABASE: admin
+#      MYSQL_USER: root
+#      MYSQL_PASSWORD: root
+#      MYSQL_ROOT_PASSWORD: root
+#    volumes:
+#      - .dbdata:/var/lib/mysql
+#    ports:
+#      - "33066:3306"
+
+# netcat
+#version: '3.8'
+#
+#services:
+#  backend:
+#    build:
+#      context: .
+#      dockerfile: Dockerfile
+#    ports:
+#      - "8000:8000"
+#    volumes:
+#      - .:/app
+#    depends_on:
+#      - db
+#    command: >
+#      sh -c "while ! nc -z db 3306; do
+#            echo 'Waiting for the database...';
+#            sleep 1;
+#            done;
+#            python manage.py runserver 0.0.0.0:8000"
+#
+#  db:
+#    image: mysql:5.7.22
+#    restart: always
+#    environment:
+#      MYSQL_DATABASE: admin
+#      MYSQL_USER: root
+#      MYSQL_PASSWORD: root
+#      MYSQL_ROOT_PASSWORD: root
+#    volumes:
+#      - .dbdata:/var/lib/mysql
+#    ports:
+#      - "33066:3306"
+
+# mariadb - client
+version: '3.8'
+
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"
+    volumes:
+      - .:/app
+    depends_on:
+      - db
+    command: >
+      sh -c "until mysql -h db -uroot -proot -e 'SHOW DATABASES;'; do
+            echo 'Waiting for the database...';
+            sleep 1;
+            done;
+            python manage.py runserver 0.0.0.0:8000"
+
+  db:
+    image: mysql:5.7.22
+    restart: always
+    environment:
+      MYSQL_DATABASE: admin
+      MYSQL_USER: root
+      MYSQL_PASSWORD: root
+      MYSQL_ROOT_PASSWORD: root
+    command: --skip-ssl
+    volumes:
+      - .dbdata:/var/lib/mysql
+    ports:
+      - "33066:3306"
+
+
+
+

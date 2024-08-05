@@ -1,0 +1,68 @@
+# Default ignored files
+/shelf/
+/workspace.xml
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Django stuff:
+*.log
+*.pot
+*.pyc
+*.pyo
+*.coverage
+.coverage.*
+*.dat
+*.sqlite3
+*.db
+
+# Django migrations
+**/migrations/*.py
+!**/migrations/__init__.py
+
+# Django static and media files
+staticfiles/
+media/
+
+# Local environment settings
+.env
+.local
+.venv
+
+.dbdata/
+
+# Docker
+docker-compose.override.yml
+docker-compose.override.yaml
+docker-compose.local.yml
+docker-compose.local.yaml
+**/Dockerfile
+**/Dockerfile.*
+
+# VSCode
+.vscode/
+
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Python virtual environment
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# RabbitMQ
+rabbitmq_data/
+
+# React
+node_modules/
+build/
+dist/
